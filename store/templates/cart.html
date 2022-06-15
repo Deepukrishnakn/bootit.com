@@ -6,7 +6,7 @@
 radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
 url('/static/images/mainimg5.jpg');">
 	<h5 class="l-text2 t-center">
-		
+		Shopping Cart
 	</h5>
 </section>
   <title>Cart</title>
@@ -127,7 +127,7 @@ url('/static/images/mainimg5.jpg');">
                         <h6 class="text-muted">₹ {{cart_item.product.price }}</h6>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" class="text-muted"><i
+                        <a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" class="text-muted" onclick="return confirm('Are you Sure you want to delete this item?')"><i
                             class="fas fa-times"></i></a>
                       </div>
                     </div>
@@ -179,8 +179,8 @@ url('/static/images/mainimg5.jpg');">
                         <h5>₹{{grand_total}}</h5>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark">Checkout</button>
+              <a href="{% url 'checkout' %}"> <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Checkout</button></a>
 
 
 

@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/linearicons.css' %}">
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/themify-icons.css'%}">
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/font-awesome.min.css'%}">
+<link rel="stylesheet" href="{% static 'checkoutstaticcss/nice-select.css'%}">
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/nouislider.min.css'%}">
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/bootstrap.css'%}">
+<link rel="stylesheet" href="{% static 'checkoutstatic/css/main.css' %}">
+
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style=" background-image:
+radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
+url('/static/images/mainimg5.jpg');">
+	<h5 class="l-text2 t-center">
+		Checkout
+	</h5>
+</section>
+
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap"> 
+    <div class="container"> 
+        
+        <div class="billing_details"> 
+            <div class="row"> 
+                <div class="col-lg-5"> 
+                    <h3>Billing Details</h3>                
+                    <form class="row contact_form" action="" method="POST"> 
+                        {% csrf_token %} 
+                        {% if messages %} 
+                        <ul class="messages"> 
+                            {% for message in messages %} 
+                                                             
+                                <div class="alert alert-success alert-dismissiblen "> 
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button> 
+                                    <strong>{{message}}</strong>  
+                                </div> 
+                            {% endfor %} 
+                        </ul> 
+                        {% endif %} 
+                        <div class="col-md-6 form-group p_star"> 
+                            <label style="color: black;" for="">first name</label> 
+                            <input type="text" class="form-control" id="first" name="first_name"> 
+                            
+                        </div> 
+                        <div class="col-md-6 form-group p_star"> 
+                            <label style="color: black;" for="">last name</label> 
+                            <input type="text" class="form-control" id="last" name="last_name"> 
+                            
+                        </div> 
+                         
+                        <div class="col-md-6 form-group p_star"> 
+                            <label style="color: black;" for="">phone</label> 
+                            <input type="text" class="form-control" id="number" name="phone" required> 
+                            
+                        </div> 
+                        <div class="col-md-6 form-group p_star"> 
+                            <label style="color: black;" for="">email</label> 
+                            <input type="email" class="form-control" id="email" name="email"> 
+                            
+                        </div> 
+                         
+                        <div class="col-md-12 form-group p_star"> 
+                            <label style="color: black;" for="">address_line_1</label> 
+                            <input type="text" class="form-control" id="address_line_1" name="address_line_1" required> 
+                            
+                        </div> 
+                        <div class="col-md-12 form-group p_star">  
+                            <label style="color: black;" for="">address_line_2(optional)</label>                            
+                            <input type="text" class="form-control" id="add2" name="address_line_2"> 
+                      
+                        </div> 
+                        <div class="col-md-12 form-group p_star"> 
+                            <label style="color: black;" for="">city</label> 
+                            <input type="text" class="form-control" id="city" name="city"> 
+                          
+                        </div> 
+                        <div class="col-md-12 form-group p_star"> 
+                            <label style="color: black;"  for="">District</label> 
+                            <select name="district"
+
+
+class="count
+
+ry_select"> 
+                                <option value="1">District</option> 
+                                <option value="Kasargod">Kasargod</option> 
+                                <option value="kannur">kannur</option> 
+                                <option value="wayanad">wayanad</option> 
+                                <option value="kozhikod">kozhikod</option> 
+                                <option value="malappuram">malappuram</option> 
+                                <option value="trissur">trissur</option> 
+                                <option value="palakkad">palakkad</option> 
+                                <option value="idukki">idukki</option> 
+                                <option value="ernakulam">ernakulam</option> 
+                                <option value="kottayam">kottayam</option> 
+                                <option value="alappuzha">alappuzha</option> 
+                                <option value="pathanamtitta">pathanamtitta</option> 
+                                <option value="kollam">kollam</option> 
+                                <option value="truvandram">truvandram</option> 
+                            </select> 
+                        </div> 
+                        <div class="col-md-12 form-group p_star"> 
+                            <label style="color: black;" for="">state</label> 
+                            <select name="state" class="country_select"> 
+                                <option value="kerala">kerala</option>                                 
+                                <option value="karnadaka">karnadaka</option>                                 
+                            </select> 
+                        </div> 
+                        <div class="col-md-12 form-group p_star"> 
+                            <label  style="color: black;" for="">country</label> 
+                            <select name="country" class="country_select"> 
+                                <option value="india">india</option>                                 
+                            </select> 
+                        </div>                       
+                         
+                       
+                        <div class="col-md-12 form-group"> 
+                             
+                            <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" required> 
+                        </div> 
+                        <div class="checkout_btn_inner "> 
+                            <button type="submit" style="margin-left: 30%;" class="btn primary-btn "> Save</button> 
+                        </div> 
+                    </form> 
+                    
+                    </div> 
+                    
+                    <div  class="col-lg-7 "> 
+ 
+ 
+                        <!-- adeeddddddd --> 
+                        <div class="cupon_area"> 
+                            <div class="check_title w-100"> 
+                                <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2> 
+                            </div> 
+                            <form method="POST" action=""> 
+                                {% csrf_token %} 
+                                <input type="text" name="coupon" placeholder="Enter coupon code"> 
+                               <button type="submit">Enter Coupon</button> 
+                            </form>                            
+                        </div> 
+                        <!-- endhere --> 
+ 
+ 
+ 
+                        <form action="##" method="POST">  
+                        {% csrf_token  %}                        
+                        <div class="order_box ">   
+                            <div class="form-check ">{% for a in address %} 
+                                <input class="form-check-input" type="radio"  name="address" value="{{a.id}}" checked>                         
+                                <label class="form-check-label" for="exampleRadios1">
+
+                            <b>{{a.first_name}} </b>  <a href="{% url 'remove_address' a.id %}"><i style="margin-left:150px;color: red;font-size: large;" class="fa fa-trash "  aria-hidden="true"></i></a>                 
+                                </label> 
+                                 
+                                   <p>{{a.first_name}}{{a.last_name}},{{a.address_line_1}}<br>,{{a.email}},<br>{{a.city}},{{a.state}},{{a.phone}}<br>{{a.country}},{{a.zip}}</p>  
+                                {% endfor %} 
+                              
+                              </div> 
+                            <h2>Your Order</h2> 
+                            <ul class="list mt-1"> 
+                                <table> 
+                                    <tr> 
+                                        <th>product</th> 
+                                        <th>Name</th> 
+                                        <th>quantity</th> 
+                                        <th>price</th> 
+                                    </tr> 
+                                    {% for x in cart_items %}   
+                                    <tr style="margin-top: 20%;height: 70%;"> 
+                                        <td style="width: 25%;"><img src=" {{ x.product.image.url }}" style="width: 50px; height: 50px;" alt=""></td> 
+                                        <td style="width: 40%;">{{ x.product.product_name }}</td> 
+                                        <td style="width: 25%;">{{x.quantity}}</td> 
+                                        <td>{{ x.sub_total }}</td> 
+                                    </tr> 
+                                    {% endfor %} 
+                                </table>                        
+                             
+                            </ul>  
+                            <ul class="list mt-2 "> 
+                                <li><a style="color: black; font-weight: 700;" href="#">Subtotal <span>₹ {{total}}</span></a></li> 
+                                <li><a style="color: black; "href="#">Tax <span>₹ {{tax}}</span></a></li> 
+                                {% if not discount_available %} 
+                                <li><a style="color:black;font-weight: 800;" href="#">Grand Total <span>₹ {{grand_total}}</span></a></li> 
+                                {% else %} 
+                                <li><a style="color: black; "href="#">Discount <span>₹ {{ discount_available }}</span></a></li> 
+                                <li><a style="color:black;font-weight: 800;" href="#">Grand Total <span>₹ {{grand_total}}</span></a></li> 
+                                {% endif %} 
+                            </ul> 
+                            <div class="checkout_btn_inner d-flex align-items-center"> 
+                                <button type="submit" style="margin-left: 30%;" class="btn primary-btn "> Place Order</button> 
+                            </div> 
+                   
+                    </div> 
+                </form>      
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</section> 
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'checkoutstatic/js/vendor/bootstrap.min.js'%}"></script>
+    <script src="{% static 'checkoutstatic/js/jquery.ajaxchimp.min.js'%}"></script>
+    <script src="{% static 'checkoutstatic/js/jquery.nice-select.min.js'%}"></script>
+    <script src="{% static 'checkoutstatic/js/jquery.sticky.js'%}"></script>
+    <script src="{% static 'checkoutstatic/js/nouislider.min.js'%}"></script>
+    <script src="{% static 'checkoutstatic/js/jquery.magnific-popup.min.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="{% static 'checkoutstatic/js/gmaps.min.js'%}"></script>
+    <script src="{% static 'checkoutstatic/js/main.js'%}"></script>
+
+{% endblock content %}

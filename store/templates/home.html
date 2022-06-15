@@ -66,8 +66,16 @@
 							<li>
 								<a href="{% url 'home' %}">My Account</a>
 								<ul class="sub_menu">
-									<li><a href="{% url 'login' %}">Login</a></li>
+									{% if user.is_authenticated %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+									</li>
+									{% else %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+									</li>
 									<li><a href="{% url 'register' %}">Signup</a></li>
+									{% endif %}
 								</ul>
 							</li>
 						</ul>
@@ -78,7 +86,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="{% url 'home' %}" class="logo">
-					<img src="{% static 'images/icons/logo.png'%}" alt="IMG-LOGO">
+					<img src="{% static 'images/bootitlogo.png'%}" alt="IMG-LOGO">
 				</a>
 
 				<!-- Menu -->
@@ -129,9 +137,18 @@
 					</nav>
 				</div>
 				<!-- Header Icon -->
-				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
+				<div class="header-icons">						
+						{% if user.is_authenticated %}
+							<li class="nav-item">
+							<a href="#" class="header-wrapicon1 dis-block">
+							<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
+									</li>
+									{% else %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+									</li>
+									<li><a href="{% url 'register' %}">Signup</a></li> 
+									{% endif %}
 					</a>
 
 					<span class="linedivide1"></span>
@@ -202,8 +219,16 @@
 									<li>
 										<a href="{% url 'home' %}">My Account</a>
 										<ul class="sub_menu">
-											<li><a href="{% url 'login' %}">Login</a></li>
-											<li><a href="{% url 'register' %}">Signup</a></li>
+											{% if user.is_authenticated %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+									</li>
+									{% else %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+									</li>
+									<li><a href="{% url 'register' %}">Signup</a></li>
+									{% endif %}
 										</ul>
 									</li>
 								</ul>
@@ -228,10 +253,9 @@
 					<li class="item-menu-mobile">
 						<a href="index.html">Category</a>
 						<ul class="sub-menu">
-							{% for x in links %}
+							 {% for x in links %}
 							<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
-							{% endfor %}
-						</ul>
+							{% endfor %} 
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
