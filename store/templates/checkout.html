@@ -79,12 +79,7 @@ url('/static/images/mainimg5.jpg');">
                         </div> 
                         <div class="col-md-12 form-group p_star"> 
                             <label style="color: black;"  for="">District</label> 
-                            <select name="district"
-
-
-class="count
-
-ry_select"> 
+                            <select name="district"class="country_select"> 
                                 <option value="1">District</option> 
                                 <option value="Kasargod">Kasargod</option> 
                                 <option value="kannur">kannur</option> 
@@ -119,7 +114,7 @@ ry_select">
                        
                         <div class="col-md-12 form-group"> 
                              
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" required> 
+                            <input type="text" class="form-control" id="zip" name="pincode" placeholder="Postcode/ZIP" required> 
                         </div> 
                         <div class="checkout_btn_inner "> 
                             <button type="submit" style="margin-left: 30%;" class="btn primary-btn "> Save</button> 
@@ -144,17 +139,17 @@ ry_select">
                         </div> 
                         <!-- endhere --> 
  
+
+                       
+                       {{ address.first_name }}
  
- 
-                        <form action="##" method="POST">  
+                        <hr>
+                        <form action="{% url 'place_order' %}" method="POST">  
                         {% csrf_token  %}                        
                         <div class="order_box ">   
                             <div class="form-check ">{% for a in address %} 
                                 <input class="form-check-input" type="radio"  name="address" value="{{a.id}}" checked>                         
-                                <label class="form-check-label" for="exampleRadios1">
-
-                            <b>{{a.first_name}} </b>  <a href="{% url 'remove_address' a.id %}"><i style="margin-left:150px;color: red;font-size: large;" class="fa fa-trash "  aria-hidden="true"></i></a>                 
-                                </label> 
+                              
                                  
                                    <p>{{a.first_name}}{{a.last_name}},{{a.address_line_1}}<br>,{{a.email}},<br>{{a.city}},{{a.state}},{{a.phone}}<br>{{a.country}},{{a.zip}}</p>  
                                 {% endfor %} 

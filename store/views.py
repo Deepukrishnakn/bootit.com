@@ -1,4 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from orders.models import Address
+from orders.forms import AddressForm
+
+
 from .models import Cart, CartItem, Category, Product, SubCategory, Variation
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
@@ -277,12 +281,32 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         grand_total=0
         if request.user.is_authenticated:
             cart_items =CartItem.objects.filter(user=request.user, is_active=True)
+            if request.method == 'POST':
+                form = AddressForm(request.POST)
+                if form.is_valid():
+                    #store all the billing imformetions inserds the Order table
+                    data = Address()
+                    data.user = request.user
+                    data.first_name = form.cleaned_data['first_name']
+                    data.last_name = form.cleaned_data['last_name']
+                    data.phone = form.cleaned_data['phone'] 
+                    data.email = form.cleaned_data['email']
+                    data.address_line_1 = form.cleaned_data['address_line_1']
+                    data.address_line_2 = form.cleaned_data['address_line_2']
+                    data.country = form.cleaned_data['country']
+                    data.state = form.cleaned_data['state']
+                    data.district = form.cleaned_data['district']
+                    data.city = form.cleaned_data['city']
+                    data.pincode = form.cleaned_data['pincode']
+                    data.save()
         else:
             cart = Cart.objects.get(cart_id=_cart_id(request))
             cart_items =CartItem.objects.filter(cart=cart, is_active=True)
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
+            address = Address.objects.filter(user=request.user)
+            
             
         tax = (2 * total)/100
         grand_total = total + tax
@@ -294,6 +318,7 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         'quantity': quantity,
         'cart_items': cart_items,
         'tax': tax,
-        'grand_total': grand_total, 
+        'grand_total': grand_total,
+        'address': address, 
     }
     return render(request, 'checkout.html',context)

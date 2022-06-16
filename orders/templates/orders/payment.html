@@ -1,0 +1,173 @@
+{% extends 'nave.html' %}
+{% load static %}
+{% block content%}
+
+<!-- <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style=" background-image:
+radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
+url('/static/images/mainimg5.jpg');">
+	<h5 class="l-text2 t-center">
+		Shopping Cart
+	</h5>
+</section> -->
+  <title>Cart</title>
+  <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}"/>
+  <script src="https://kit.fontawesome.com/89e78a04d2.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    @media (min-width: 1025px) {
+      .h-custom {
+        height: 100vh !important;
+      }
+    }
+
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+      font-size: 1rem;
+      line-height: 2.15;
+      padding-left: .75em;
+      padding-right: .75em;
+    }
+
+    .card-registration .select-arrow {
+      top: 13px;
+    }
+
+    .bg-grey {
+      background-color: #fff;
+    }
+
+    @media (min-width: 992px) {
+      .card-registration-2 .bg-grey {
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .card-registration-2 .bg-grey {
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="h-100% " style="background-color: #d2c9ff;">
+    <div class="container-fluid py-5 pb-5 h-100%">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    
+
+                    <h2>Billing Details</h2>
+
+                    <div class="card">
+                     
+                      <div class="card-header">
+                        Billing Address
+                     
+                      </div>
+                      <div class="card-body">
+                      <p class="text-muted">{{ address.first_name }} {{ address.last_name }}</p>
+                      <p class="text-muted">{{ address.phone }}</p>
+                      <p class="text-muted">{{ address.address_line_1 }}<br>{{ address.city }},{{ address.district }},{{ address.state }},{{ address.country }},pin:{{ address.pincode }}</p>
+                      </div>
+                    </div><br>
+
+                    <div class="card">
+                      <div class="card-header">
+                       Payment Method
+                      </div>
+                      <div class="card-body">
+                      <p class="muted-text">With supporting text below as a natural lead-in to additional content.</p>
+                      </div>
+                    </div><br>
+
+                    <div class="card">
+                      <div class="card-header">
+                        Products Review 
+                      </div>
+                      <div class="card-body">
+                        <h6 class="text-muted">{{cart_item.product.product_name }}</h6>
+                        <div class="item-slick3" data-thumb="{{ single_product.image.url }}">
+                          <div class="cart-img-product b-rad-4 o-f-hidden">
+                            <img src="{{ cart_item.product.image.url }}" alt="IMG-PRODUCT">
+                          </div>
+                        </div>
+                        <h6 class="text-muted">{{cart_item.product.SubCategory }}</h6>
+                        <h6 class="text-muted">{{cart_item.product.category }}</h6>
+                        <h6 class="text-muted">{{cart_item.product.description }}</h6>
+                        <h6 class="text-muted">₹ {{cart_item.product.price }}</h6>
+                      </div>
+                    </div>
+
+                  
+                    {% for cart_item in cart_items %}
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+						<div class="item-slick3" data-thumb="{{ single_product.image.url }}">
+							<div class="cart-img-product b-rad-4 o-f-hidden">
+								<img src="{{ cart_item.product.image.url }}" alt="IMG-PRODUCT">
+							</div>
+						</div>
+                
+                      <div class="col-md-3 col-lg-4 col-xl-6 offset-lg-1">
+                        <h6 class="mb-0">₹ {{ cart_item.sub_total }}</h6>
+                        <h6 class="text-muted">₹ {{cart_item.product.price }}</h6>
+                      </div>
+                    </div>
+
+                    <hr class="my-4">
+
+
+                    {% endfor %}
+
+                    
+                    <div class="pt-5">
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Total</h5>
+                      <h5>₹ {{total}}</h5>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Tax</h5>
+                      <h5>₹ {{tax}}</h5>
+                    </div>
+                    <div>
+                      <div class="d-flex justify-content-between mb-5">
+                        <h5 class="text-uppercase">Grand Total </h5>
+                        <h5>₹{{grand_total}}</h5>
+                      </div>
+                    </div>
+              <a href="{% url 'checkout' %}"> <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Proceed to Pay</button></a>
+
+
+
+</div>
+
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+{% endblock content%}
