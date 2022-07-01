@@ -1,0 +1,79 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <div  style="min-height: 100%;">
+
+<h2 class=" text-center text-primary m-3">variations</h2>
+<a href="{% url 'addvariation'%}"><button type="button" class="btn btn-success m-2">Add</button></a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        
+        <th scope="col">Name</th>
+        <th scope="col">variation Category</th>
+        <th scope="col">variation Value</th>
+        <th scope="col">Image</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for x in variation %}
+      
+      <tr>
+        
+        <th scope="row">{{x.product.product_name}}</th>
+        <td>{{x.variation_category}}</td>
+        <td>{{x.variation_value}}</td>
+        <td><img style="width:20px;height:20px;" src="{{ x.product.image.url }}" alt=""/></td>
+        <td>{{x.is_active}}</td>
+        <td><a href="{% url 'editvariation' x.id %}"><i class="fa fa-edit" style="font-size:20px"></i></a></td> 
+        <td><a href="{% url 'variationdestroy' x.id %}"onclick="return confirm('Are You Sure, Want To Delete');" ><i  class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
+        
+      </tr>
+     
+      {% endfor %}
+     
+    </tbody>
+  </table>
+</dive>
+
+
+	<!-- Pagination -->
+  
+  <div class="row m-5">
+    <div class="pagination d-flex-m flex-w p-t-50">
+      
+      {% if variation.has_other_pages %}
+      <div class="product__pagination">
+    <ul class="pagination">
+      {% if variation.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{variation.previous_page_number}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only"><<</span>
+        </a>
+      </li>
+      {% endif %}
+      {%  for i in variation.paginator.page_range %}
+      {% if variation.number == i %}
+      <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% endif %}
+         {% endfor %}
+         {% if variation.has_next %}
+        <a class="page-link" href="?page={{variation.next_page_number}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">>></span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+  </div>
+  </div>
+  {% endblock content %} 

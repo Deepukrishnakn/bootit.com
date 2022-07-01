@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from ctypes import cast
+from email.policy import default
 from pathlib import Path,os
+from decouple import config
+from django import conf
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-62ku5v@!9ppm0t_5*&npxou*2cfp-@o(((t8e$tf0ig9rkw0#6'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +44,8 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'orders',
+    'master',
+    
 ]
 
 MIDDLEWARE = [
@@ -141,14 +147,18 @@ MEDIA_ROOT = BASE_DIR /'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TWILIO_VERIFY_SERVICE_SID='VAcc2b522286a5a0940172e536c5a1705f'
-TWILIO_ACCOUNT_SID='ACa573862baf6ffdef688e0bc4d92641b2'
-TWILIO_AUTH_TOKEN='36d59e13fc05d78337f440513dae470d'
+TWILIO_VERIFY_SERVICE_SID=config('TWILIO_VERIFY_SERVICE_SID')
+TWILIO_ACCOUNT_SID=config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN=config('TWILIO_AUTH_TOKEN')
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'deepukrishna25@gmail.com'
-EMAIL_HOST_PASSWORD = 'deepu@defender13'
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
+#razorpay keys
+RAZORPAY_ID = config('RAZORPAY_ID')
+RAZORPAY_KEY = config('RAZORPAY_KEY')

@@ -1,0 +1,50 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </nav>
+  <section class="fixed-bottom">
+    <footer class="pt-2 pb-2  bg-dark text-light">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-8">
+            <h6></h6>
+          </div>
+          <div class="col-12 col-md-4 mt-4 mt-md-0 text-center text-md-end">
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <h2 class=" text-center text-primary m-3">SubCategory</h2>
+  <a href="{% url 'addsubcategory'%}"><button type="button" class="btn btn-success m-2">Add</button></a>
+  <table class="table table-striped">
+    <thead class="text-primary">
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">Slug</th>
+        <th scope="col">Subcategory</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      {% for x in subcategory %}
+      
+      <tr>
+        
+        <th scope="row">{{x.category}}</th>
+        <td>{{x.slug}}</td>
+        <td>{{x.name}}</td>
+        <td><a href="{% url 'editsubcat' x.slug %}"><i class="fa fa-edit" style="font-size:20px"></i></a></td>
+        <td><a href="{% url 'subcat_delete' x.slug %}"onclick="return confirm('Are You Sure, Want To Delete');" ><i  class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
+        
+      </tr>
+     
+      {% endfor %}
+     
+    </tbody>
+  </table>
+  {% endblock content %}

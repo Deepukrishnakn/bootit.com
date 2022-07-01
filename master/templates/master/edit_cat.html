@@ -1,0 +1,41 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+        <h3 class="text-center tex-primary m-3"> Edit Category</h3>
+      
+      <form class="forms-sample"  action="" enctype='multipart/form-data' method="POST" >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{{ form.category_name }}</label>
+          <label class="form-label" for="form3Example1c">Category name</label>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">{{ form.slug }}</label>
+          <label class="form-label" for="form3Example1c">Slug</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.description }}</label>
+          <label class="form-label" for="form3Example1c">Description</label>
+        </div>
+     
+        <div class="form-group">
+          <label>{{ form.cat_image }}</label>
+          <input type="file" name="img[]" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <label class="form-label" for="form3Example1c">image</label>
+            <span class="input-group-append">
+            </span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2" type="submit">Submit</button>
+        <a href="{% url 'categoryz' %}"><button class="btn btn-light">Cancel</button></a>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content%}

@@ -126,7 +126,11 @@
             ]    
         });
 
-
+//add wishlidst
+$(document).on('click',".add_wishlist",function(){
+  var _pid=$(this).attr('data-product');
+  console.log(_pid);
+});
         /*[ Slick3 ]
         ===========================================================*/
         $('.slick3').slick({
@@ -149,3 +153,5 @@
         
 
 })(jQuery);
+
+

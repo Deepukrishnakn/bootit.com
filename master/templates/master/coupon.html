@@ -1,0 +1,65 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h2 class="text-center tex-primary m-3"">coupon</h2>
+ <a href="{% url 'addcoupon'%}"><button type="button" class="btn btn-success m-3">Add</button></a> 
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">coupon table</h4>
+        <p class="card-description">
+         
+        </p>
+        <div class="table-responsive pt-3">
+          <table class="table table-bordered">
+            <thead class="text-primary">
+              <tr>
+              
+                <th>
+                    Discount code
+                </th>
+                <th>
+                    Discount percentage
+                </th>
+                <th>
+                    Discount from
+                </th>
+                <th>
+                    Is active
+                </th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for x in coupon %}
+               
+                    <td>
+                        {{x.discount_code}}
+                    </td>
+                   
+                    <td>
+                      {{ x.discount_percentage }}
+                    </td>
+                    <td>
+                        {{ x.discount_from }}
+                    </td>
+                    <td>
+                        {{ x.is_active }}
+                    </td>
+                   
+                    <td><a href="{% url 'editcoupon' x.id %}"><i class="fa fa-edit" style="font-size:20px"></i></a></td>
+                  <td><a href="{% url 'deletecoupon' x.id %}"onclick="return confirm('Are You Sure, Want To Delete');" ><i  class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
+                  </tr>
+                  {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+
+{% endblock content %} 

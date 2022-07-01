@@ -1,0 +1,37 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+
+
+
+
+<div class="col-12 grid-margin stretch-card" style="min-height: 200px;">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="text-center tex-primary m-3"> Add Price filter </h3>
+      
+      <form class="forms-sample" action="" enctype='multipart/form-data' method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{{ form.name }}</label>
+          <label class="form-label" for="form3Example1c">Name</label>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">{{ form.pricerange_from }}</label>
+          <label class="form-label" for="form3Example1c"> pricerange from</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.pricerange_to }}</label>
+          <label class="form-label" for="form3Example1c">  pricerange to</label>
+        </div>
+
+    
+        <button type="submit" class="btn btn-primary mr-2" type="submit">Submit</button>
+        
+      </form>
+      <a href="{% url 'pricefilter' %}"><button class="btn btn-light">Cancel</button></a>
+    </div>
+  </div>
+</div>
+{% endblock content %} 

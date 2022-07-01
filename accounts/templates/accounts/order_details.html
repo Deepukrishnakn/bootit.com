@@ -1,0 +1,294 @@
+{% extends 'nave.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    @media (min-width: 100%) {
+.h-custom {
+height: 100vh !important;
+}
+}
+
+.horizontal-timeline .items {
+border-top: 2px solid #ddd;
+}
+
+.horizontal-timeline .items .items-list {
+position: relative;
+margin-right: 0;
+}
+
+.horizontal-timeline .items .items-list:before {
+content: "";
+position: absolute;
+height: 8px;
+width: 8px;
+border-radius: 50%;
+background-color: #ddd;
+top: 0;
+margin-top: -5px;
+}
+
+.horizontal-timeline .items .items-list {
+padding-top: 15px;
+}
+<style>
+  .gradient-custom {
+      /* fallback for old browsers */
+      background: #cd9cf2;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(
+          to top left,
+          rgba(205, 156, 242, 1),
+          rgba(246, 243, 255, 1)
+      );
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(
+          to top left,
+          rgba(205, 156, 242, 1),
+          rgba(246, 243, 255, 1)
+      );
+  }
+
+  .hh-grayBox {
+      background-color: #f8f8f8;
+      margin-bottom: 20px;
+      padding: 35px;
+      margin-top: 20px;
+  }
+  .pt45 {
+      padding-top: 45px;
+  }
+  .order-tracking {
+      text-align: center;
+      width: 33.33%;
+      position: relative;
+      display: block;
+  }
+  .order-tracking .is-complete {
+      display: block;
+      position: relative;
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      border: 0px solid #afafaf;
+      background-color: #f7be16;
+      margin: 0 auto;
+      transition: background 0.25s linear;
+      -webkit-transition: background 0.25s linear;
+      z-index: 2;
+  }
+  .order-tracking .is-complete:after {
+      display: block;
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 7px;
+      top: -2px;
+      bottom: 0;
+      left: 5px;
+      margin: auto 0;
+      border: 0px solid #afafaf;
+      border-width: 0px 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+  }
+  .order-tracking.completed .is-complete {
+      border-color: #27aa80;
+      border-width: 0px;
+      background-color: #27aa80;
+  }
+  .order-tracking.completed .is-complete:after {
+      border-color: #fff;
+      border-width: 0px 3px 3px 0;
+      width: 7px;
+      left: 11px;
+      opacity: 1;
+  }
+  .order-tracking p {
+      color: #a4a4a4;
+      font-size: 16px;
+      margin-top: 8px;
+      margin-bottom: 0;
+      line-height: 20px;
+  }
+  .order-tracking p span {
+      font-size: 14px;
+  }
+  .order-tracking.completed p {
+      color: #000;
+  }
+  .order-tracking::before {
+      content: "";
+      display: block;
+      height: 3px;
+      width: calc(100% - 40px);
+      background-color: #f7be16;
+      top: 13px;
+      position: absolute;
+      left: calc(-50% + 20px);
+      z-index: 0;
+  }
+  .order-tracking:first-child:before {
+      display: none;
+  }
+  .order-tracking.completed:before {
+      background-color: #27aa80;
+  }
+
+</style>
+
+
+
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100 w-100">
+      <div class="row d-flex justify-content-center align-items-center h-100 w-100%">
+        <div class="col-lg-8 col-xl-6">
+          {% for item in order_detail %}
+          <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
+            <div class="card-body p-5">
+  
+              <p class="lead fw-bold mb-5" style="color: #f37a27;">Order Details</p>
+              
+              <div class="row">
+                <div class="col mb-3">
+                  <p class="small text-muted mb-1">Date</p>
+                  <p>{{order.created_at}}</p>
+                </div>
+                <div class="col mb-3">
+                  <p class="small text-muted mb-1">Order No.</p>
+                  <p>{{order.order_number}}</p>
+                </div>
+              </div>
+              <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
+              <div class="row">
+                <div class="col-lg-12">
+  
+                  <div class="my-3 py-5 d-flex bg-light">
+                    <div
+                        class="order-tracking {% if item.order.status == 'Ordered' or  item.order.status == 'Shipped' or  item.order.status == 'Out_For_Delivery' or  item.order.status == 'Delivered' %} completed {% endif %}"
+                    >
+                        <span class="is-complete"></span>
+                        <p>Ordered</p>
+                    </div>
+                    <div
+                        class="order-tracking {% if  item.order.status == 'Shipped' or  item.order.status == 'Out_For_Delivery' or  item.order.status == 'Delivered' %} completed {% endif %}"
+                    >
+                        <span class="is-complete"></span>
+                        <p>Shipped</p>
+                    </div>
+                    <div
+                        class="order-tracking {% if  item.order.status == 'Delivered' or  item.order.status == 'Out_For_Delivery' %} completed {% endif %}"
+                    >
+                        <span class="is-complete"></span>
+                        <p>Out For Delivery</p>
+                    </div>
+                    <div
+                        class="order-tracking {% if  item.order.status == 'Delivered' %} completed {% endif %}"
+                    >
+                        <span class="is-complete"></span>
+                        <p>Delivered</p>
+                    </div>
+                </div>
+                </div>
+              </div>
+  
+              <p class="mt-4 mb-4 pt-1 mb-5">Want any help? <a href="#!" style="color: #f37a27;">Please contact
+                  us</a></p>
+  
+  
+       
+              <div class="table-responsive pt-3 mt-5">
+               <table class="table table-bordered">
+                  <thead class="text-primary">
+                    <tr>
+                      <th>
+                        image
+                    </th>
+                      <th>
+                          Products
+                      </th>
+                    
+                        <th>
+                          Variations
+                      </th>
+                    </th>
+                      <th>
+                          Quantity
+                      </th>
+                      <th>
+                        Product Price
+                      </th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                
+                     <tr>
+                          <td>
+                            {{ item.product.product_name }}
+                            
+                          </td>
+                          <td>
+                            <img src="{{ item.product.image.url}}" style="height: 6rem;">
+                            
+                          </td>
+                          <td>
+                            {% if item.variations.all %}
+                            {% for i in item.variations.all %}
+                            <p class="text-muted mb-0">{{i.variation_value}}</p>
+                            {% endfor %}
+                            {% endif %}
+                             
+                          </td>
+                          <td>
+                            {{ item.quantity }}
+                             
+                          </td>
+                          <td>
+                            {{ item.product.price }}
+                          </tr>
+                        </td>
+                  </tbody>
+                 </table>
+                  <div class="d-flex justify-content-between pt-2">
+                    <p class="fw-bold mb-0">Order Details</p>
+                    
+                  </div>
+      
+                  <div class="d-flex justify-content-between pt-2">
+                    <p class="text-muted mb-0">Order Number : {{order.order_number}}</p>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4">Sub Total:</span>{{ subtotal}}</p>
+                  </div>
+                  <div class="d-flex justify-content-between pt-2">
+                    <p class="text-muted mb-0">Transaction id : {{item.payment.payment_id}}</p>
+                    
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p class="text-muted mb-0">Order Date : {{order.created_at}}</p>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4">Tax: </span> {{order.tax}}</p>
+                  </div>
+      
+                  <div class="d-flex justify-content-between mb-5">
+                    <p class="text-muted mb-0">Recepits Voucher :{{item.payment.payment_id}}</p>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges:</span> Free</p>
+                  </div>
+                </div>
+              Total paid : <span class="h2 mb-0 ms-2">{{order.order_total}}</span></h5>
+                </div>
+              </div>
+                </table>
+             {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   -->
+  </section>
+ -->
+
+{% endblock %}
