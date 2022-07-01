@@ -14,8 +14,8 @@ from ctypes import cast
 from email.policy import default
 from pathlib import Path,os
 from decouple import config
-from django import conf
 
+from storages.backends.s3boto3 import S3Boto3Storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'store',
     'orders',
     'master',
+    'storages',
     
 ]
 
@@ -133,14 +134,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static'),
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static'),
+# ]
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR /'media/'
+
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+  'CacheControl':'max-age=86400',
+}
+AWS_S3_FILE_OVERWRITE = True
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_DIRS=[
+  'static',
 ]
+STATIC_URL = 'http://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR /'media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
