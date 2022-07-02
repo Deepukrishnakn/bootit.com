@@ -10,9 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from ctypes import cast
-from email.policy import default
-from pathlib import Path,os
+from pathlib import Path
 from decouple import config
 
 from storages.backends.s3boto3 import S3Boto3Storage
