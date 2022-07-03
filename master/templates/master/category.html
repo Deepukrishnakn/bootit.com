@@ -38,10 +38,10 @@
       
       <tr>
         
-        <th scope="row">{{x.category_name}}</th>
-        <td>{{x.slug}}</td>
-        <td>{{x.description}}</td>
-        <td><img style="width:80px;height:80px;" src="{{x.cat_image.url}}" alt=""/></td>
+        <th scope="row">{{ x.category_name }}</th>
+        <td>{{ x.slug }}</td>
+        <td>{{ x.description }}</td>
+        <td><img style="width:80px;height:80px;" src="{{ x.cat_image.url }}" alt=""/></td>
         <td><a href="{% url 'editcat' x.slug %}"><i class="fa fa-edit" style="font-size:20px"></i></a></td>
         <td><a href="{% url 'cat_delete' x.slug %}"onclick="return confirm('Are You Sure, Want To Delete');" ><i  class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
         

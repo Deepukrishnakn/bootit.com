@@ -50,7 +50,7 @@
                 {% for x in products %}
                 <tr>
                     <td class="py-1">
-                      <img style="width:50px;height:50px;" src="{{x.image.url}}" alt=""/>
+                      <img style="width:50px;height:50px;" src="{{ x.image.url }}" alt=""/>
                     </td>
                     <td>
                         {{x.product_name}}
@@ -111,7 +111,7 @@
         {% endif %}
            {% endfor %}
            {% if products.has_next %}
-          <a class="page-link" href="?page={{products.next_page_number}}" aria-label="Next">
+          <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">>></span>
           </a>
