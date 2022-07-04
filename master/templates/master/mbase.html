@@ -9,15 +9,15 @@
   <title>Bootit Admin</title>
   <!-- base:css -->
   <link rel="stylesheet" href="{% static 'masterstatic/vendors/mdi/css/materialdesignicons.min.css' %}">
-  <link rel="stylesheet" href="{% static 'masterstatic/vendors/css/vendor.bundle.base.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'masterstatic/vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}"> {% endcomment %}
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'masterstatic/css/style.css' %}">
   <!-- endinject -->
-  <script src="https://kit.fontawesome.com/3a2c36e604.js" crossorigin="anonymous"></script>
+  {% comment %} <script src="https://kit.fontawesome.com/3a2c36e604.js" crossorigin="anonymous"></script> {% endcomment %}
 </head>
 <body>
   <div class="container-scroller d-flex">
@@ -41,7 +41,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'users' %}">
-            <i class="mdi mdi-account menu-icon"></i>
+            {% comment %} <i class="mdi mdi-account menu-icon"></i> {% endcomment %}
             <span class="menu-title">User</span>
             <i class="menu-arrow"></i>
           </a>
@@ -54,37 +54,37 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'categoryz' %}">
-            <i class="mdi mdi-view-headline menu-icon"></i>
+            {% comment %} <i class="mdi mdi-view-headline menu-icon"></i> {% endcomment %}
             <span class="menu-title">Category</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'subcategoryz' %}">
-            <i class="mdi mdi-chart-pie menu-icon"></i>
+            {% comment %} <i class="mdi mdi-chart-pie menu-icon"></i> {% endcomment %}
             <span class="menu-title">SubCategory</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'productz' %}">
-            <i class="mdi mdi-grid-large menu-icon"></i>
+            {% comment %} <i class="mdi mdi-grid-large menu-icon"></i> {% endcomment %}
             <span class="menu-title">products</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'variationz' %}">
-            <i class="mdi mdi-emoticon menu-icon"></i>
+            {% comment %} <i class="mdi mdi-emoticon menu-icon"></i> {% endcomment %}
             <span class="menu-title">Variation</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'coupon' %}">
-            <i class="mdi mdi-emoticon menu-icon"></i>
+            {% comment %} <i class="mdi mdi-emoticon menu-icon"></i> {% endcomment %}
             <span class="menu-title">Discount Coupons</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'pricefilter' %}">
-            <i class="mdi mdi-emoticon menu-icon"></i>
+            {% comment %} <i class="mdi mdi-emoticon menu-icon"></i> {% endcomment %}
             <span class="menu-title">Price Filter</span>
           </a>
         </li>
@@ -96,13 +96,13 @@
         </li> {% endcomment %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'order' %}">
-            <i class="mdi mdi-emoticon menu-icon"></i>
+            {% comment %} <i class="mdi mdi-emoticon menu-icon"></i> {% endcomment %}
             <span class="menu-title">Order Details</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'review' %}">
-            <i class="mdi mdi-emoticon menu-icon"></i>
+            {% comment %} <i class="mdi mdi-emoticon menu-icon"></i> {% endcomment %}
             <span class="menu-title">Product Reviews</span>
           </a>
         </li>
