@@ -262,13 +262,15 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="{% url 'category'%}">Shop</a>
+						<a href="index.html">Shop</a>
 						<ul class="sub-menu">
-							 {% for x in links %}
+							{% for x in links %}
 							<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
-							{% endfor %} 
+							{% endfor %}
+						</ul>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
+			
 
 					<li class="item-menu-mobile">
 						<a href="{% url 'about' %}">About</a>
