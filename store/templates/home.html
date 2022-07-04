@@ -648,25 +648,11 @@
 				</h4>
 
 				<ul>
-					<li class="p-t-4">
-						<a href="{% url 'category' %}" class="s-text13 active1">
-							All
-						</a>
-					</li>
-				   {% if not categories %}
-					{% for x in link %}
-					<li class="p-t-4">
-						<a href="{{ x.get_url }}" class="s-text13">{{ x.name }}</a>
-					</li>
-				{% endfor %}
-				{% endif %}
-				 {% for s in link %}
-				 {% if s.category == categories %}
-				 <li class="p-t-4">
-					<a href="{{ s.get_url }}" class="s-text13">{{ s.name }}</a>
-				</li>
-				{% endif %}
-				{% endfor %}
+					{% for x in links %}
+					<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
+					{% endfor %} 
+				<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
+			</li>
 				</ul>
 			</div>
 
