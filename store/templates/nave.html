@@ -132,8 +132,7 @@
 							{% if user.is_authenticated %}
 							<li>
 								<a href="{% url 'wishlist' %}" class="header-wrapicon1 dis-block">
-							<i class="icon-wishlist icon_heart" aria-hidden="true">
-							</i>
+									<i class="fa fa-heart-o" aria-hidden="true"></i>
 						</a>
 						{% endif %}
 						</li>
@@ -175,7 +174,7 @@
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
 			<a href="{% url 'home' %}" class="logo">
-				<img src="{% static 'images/bootitlogo.png'%}" alt="IMG-LOGO">
+				<!-- <img src="{% static 'images/bootitlogo.png'%}" alt="IMG-LOGO"> -->
 			</a>
 
 			<!-- Button show menu -->
