@@ -2,7 +2,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<div class="container">
+	{% if messages %}
+	  {% for message in messages %}
+			<div class="alert alert-danger d-flex align-items-center" role="alert">
+		  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"></svg>
+		  <div>
+			{{message}}
+		  </div>
+		</div>
+	  {% endfor %}
+	{% endif %}
+   </div>
 <!-- jQuery -->
 <script src="{% static 'userprofile/js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
 

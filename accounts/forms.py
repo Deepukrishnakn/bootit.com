@@ -20,7 +20,7 @@ class registrationform(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(registrationform, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['placeholder'] = 'Enter First Name'
-        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter Lastt Name'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter Last Name'
         self.fields['phone_number'].widget.attrs['placeholder'] = 'Enter phone number'
         self.fields['email'].widget.attrs['placeholder'] = 'Enter Email'
         for field in self.fields:
