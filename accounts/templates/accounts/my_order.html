@@ -79,12 +79,12 @@ $(document).ready(function() {
 			<strong class="d-inline-block mr-3">Your Order History</strong>
 		</header>
 		<div class="card-body">
-			<div class="row"> 
+			<div class="row col-md-12"> 
 			
 
                 <div class="col-md-12"> 
-                    <table class="table">
-						<thead class="thead-light">
+                    <table class="table col-md-12">
+						<thead class="thead-light col-md-12">
 						  <tr>
 							<th scope="col">Order/No.</th>
 							<th scope="col">Billing Name</th>
@@ -100,10 +100,9 @@ $(document).ready(function() {
 							<td>₹ {{x.order_total}}</td>
 							<td>{{x.created_at}}</td>
 						  </tr>
+						 {% endfor %}
 						</tbody>
-						
 					  </table>
-					  {% endfor %}
                 </div>
 			</div>
 				
