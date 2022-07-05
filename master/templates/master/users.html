@@ -96,9 +96,9 @@
                   
                     <td>
                     {% if x.is_active %}
-                    <a href="{% url 'blockuser' x.id %}"><button type="button" class="btn btn-success m-1">Block</button></a>
+                    <a href="{% url 'blockuser' x.id %}" onclick="return confirm('Are You Sure, Want To Block {{ x.first_name}}');"><button type="button" class="btn btn-success m-1">Block</button></a>
                     {% else %}
-                    <a href="{% url 'blockuser' x.id %}"><button type="button" class="btn btn-danger m-1">Unblock</button></a>
+                    <a href="{% url 'blockuser' x.id %}" onclick="return confirm('Are You Sure, Want To UnBlock {{ x.first_name}}');"><button type="button" class="btn btn-danger m-1">Unblock</button></a>
                     </td>
                     {% endif %}
                   </tr>
