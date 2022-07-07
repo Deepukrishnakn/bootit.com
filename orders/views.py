@@ -108,8 +108,6 @@ def payment(request):
     if data:
         data = Discount_coupon.objects.get(user=request.user)
         dis=data.discount_applied 
-        print(dis)     
-        print(grand_total_without)        
         grand_total = (grand_total_without - float(dis))*100
         print(dis)
         print(grand_total)
