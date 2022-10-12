@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path,os
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -143,9 +143,9 @@ MEDIA_ROOT = BASE_DIR /'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TWILIO_VERIFY_SERVICE_SID='VA031903ba25e6aa4d066fd75d8ae1396d'
-TWILIO_ACCOUNT_SID='ACa573862baf6ffdef688e0bc4d92641b2'
-TWILIO_AUTH_TOKEN='2d43a35ba60503c7980d461840ffda5f'
+TWILIO_VERIFY_SERVICE_SID=config('TWILIO_VERIFY_SERVICE_SID')
+TWILIO_ACCOUNT_SID=config('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN=config('TWILIO_AUTH_TOKEN')
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
