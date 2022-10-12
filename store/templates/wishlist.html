@@ -1,0 +1,108 @@
+
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+<section class="bg-title-page p-t-100 p-b-40 flex-col-c-m" style=" background-image:
+radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
+url('/static/images/marcelo.jpg');">
+	<h2 class="l-text2 t-center">
+		My WisHList
+	</h2>
+	<p class="m-text13 t-center">
+		New Arrivals Soccer Collection 2022
+	</p>
+</section>
+
+
+<!-- Content page -->
+
+
+
+<section class="bgwhite p-t-55 p-b-65">
+	<div class="container">
+		<div class="row">
+			
+
+				<!--  -->
+				<!-- <div class="flex-sb-m flex-w p-b-35">
+					<span class="s-text8 p-t-5 p-b-5">
+					{{wishproduct.product}} Items Found
+					</span>
+				</div> -->
+
+				<!-- Product -->
+				<div class="row">
+
+		            {% if wishproducts %} 
+					{% for x in wishproducts %}
+					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+						<!-- Block2 -->
+						<div class="block2">
+							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								<a href="{{ x.product.get_url }}"><img src="{{ x.product.image.url }}"alt="IMG-PRODUCT">
+                                </a>
+								<div class="block2-overlay trans-0-4">
+									{% if user.is_authenticated %}
+									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4 add-wishlist" data-product="{{ x.product.product_id }}">
+										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+									</a>
+									{% endif %}
+									<div class="block2-btn-addcart w-size1 trans-0-4">
+										<!-- Button -->
+										<a href="{% url 'wishlist_destroy' x.id %}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 text-white">
+											Remove
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block2-txt p-t-20">
+								<a href="{{ x.product.get_url }}" class="block2-name dis-block s-text3 p-b-5">
+									{{ x.product.product_name }}
+								</a>
+
+								<span class="block2-price m-text6 p-r-5">
+									RS.{{ x.product.price }}
+								</span>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				{% else %}
+                <h3 class="text-danger text-center">Your Wishlist is Empty </h3>
+
+			    {% endif %} 
+				 <!-- Pagination -->
+			    <div class="row">
+					<div class="pagination d-flex-m flex-w p-t-50">
+						{% if products.has_other_pages %}
+						<div class="product__pagination">
+							{% if products.has_previous %}
+							<a class="item-pagination d-flex-c-m p-3 trans-0-4"href="?page={{products.previous_page_number}}"><</a>
+							{% endif %}
+
+							{%  for i in products.paginator.page_range %}
+								{% if products.number == i %}
+								<a class="active item-pagination p-3 trans-0-4" href="#" style="width: 2rem; height: 2rem; border-radius: 50%">{{i}}</a>
+									{% else %}
+								<a class="item-pagination p-3 trans-0-4" href="?page={{i}}">{{i}}</a>
+							
+							{% endif %}
+						   {% endfor %}
+							{% if products.has_next %}
+							<a class="item-pagination d-flex-c-m p-3 trans-0-4" href="?page={{products.next_page_number}}">></a>
+							{% endif %}
+						</div>
+						{% endif %}
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

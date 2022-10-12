@@ -35,6 +35,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+	<script src="https://kit.fontawesome.com/3a2c36e604.js" crossorigin="anonymous"></script>
 <!--===============================================================================================-->                           
 </head>
 <body class="animsition">
@@ -58,9 +60,8 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						{{user.first_name}}
 					</span>
-
 					<div class="topbar-language rs1-select2">
 						<ul class="main_menu">
 							<li>
@@ -94,12 +95,15 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
+								<a href = 'https://www.jogobonito.tk/'>Find Your Turf</a>
+								<li>
+							<li>
 								<a href="{% url 'home' %}">Home</a>
 								
 
 							
 								<li>
-									<a href="{% url 'category' %}">Category</a>
+									<a href="{% url 'category' %}">Shop</a>
 									<ul class="sub_menu">
 										{% for x in links %}
 										<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
@@ -111,26 +115,31 @@
 						
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="{% url 'about' %}">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="{% url 'contact' %}">Contact</a>
 							</li>
 							<li>
 								<form action="{% url 'search' %}" method="GET">
-								<div class="search-product pos-relative bo4 of-hidden">
-									<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="keyword" placeholder="Search Products...">
-		
-									<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" type="submit">
-										<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-									</button>
-								</div>
-								</form>
+									<div class="search-product pos-relative bo4 of-hidden">
+										<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="keyword" placeholder="Search Products...">
+			
+										<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" type="submit">
+											<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+										</button>
+									</div>
+									</form>
 							</li>
+							{% if user.is_authenticated %}
 							<li>
-							<i class="icon-wishlist icon_heart" aria-hidden="true"> <span class="header-icons-noti">0</span>
+								<a href="{% url 'wishlist' %}" class="header-wrapicon1 dis-block">
+							<i class="icon-wishlist icon_heart" aria-hidden="true">
 							</i>
+						</a>
+						{% endif %}
+						</li>
 							
 						</li>
 						</ul>
@@ -138,7 +147,7 @@
 				</div>
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
+					<a href="{% url 'userprofile' %}" class="header-wrapicon1 dis-block">
 						{% if user.is_authenticated %}
 						<li class="nav-item">
 						<a href="#" class="header-wrapicon1 dis-block">
@@ -150,6 +159,7 @@
 								</li>
 								<li><a href="{% url 'register' %}">Signup</a></li> 
 								{% endif %}
+							
 					</a>
 
 					<span class="linedivide1"></span>
@@ -245,6 +255,9 @@
 							<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
 						</div>
 					</li>
+					<li>
+						<a href = 'https://www.jogobonito.tk/'>Find Your Turf</a>
+						<li>
 
 					<li class="item-menu-mobile">
 						<a href="{% url 'home' %}">Home</a>
@@ -262,11 +275,11 @@
 			
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="{% url 'about' %}">About</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="{% url 'contact' %}">Contact</a>
 					</li>
 				</ul>
 			</nav>

@@ -1,0 +1,32 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+
+
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="text-center tex-primary m-3"> Order Status</h3>
+      <form class="forms-sample" action="" enctype='multipart/form-data' method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{{ form.status }}</label>
+          <label class="form-label" for="form3Example1c">Order Status</label>
+        </div>
+      
+      
+    
+        <button type="submit" class="btn btn-primary mr-2" type="submit">Submit</button>
+      <button class="btn btn-light">Cancel</button> 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

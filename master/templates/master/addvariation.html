@@ -1,0 +1,48 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+
+
+
+
+<div class="col-12 grid-margin stretch-card" style="min-height: 200px;">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="text-center tex-primary m-3"> Add variation </h3>
+      
+      <form class="forms-sample" action="" enctype='multipart/form-data' method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{{ form.product }}</label>
+          <label class="form-label" for="form3Example1c">product</label>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">{{ form.variation_category }}</label>
+          <label class="form-label" for="form3Example1c">variation category</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.variation_value }}</label>
+          <label class="form-label" for="form3Example1c">variation value</label>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword4">{{ form.is_active }}</label>
+            <label class="form-label" for="form3Example1c">is_active </label>
+          </div>
+    
+        <button type="submit" class="btn btn-primary mr-2" type="submit">Submit</button>
+       
+      </form>
+      <a href="{% url 'variationz' %}"><button class="btn btn-light mr-2 mt-2">Cancel</button></a>
+    </div>
+   
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

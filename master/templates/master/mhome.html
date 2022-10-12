@@ -1,0 +1,257 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+    {% block content %}
+    <div class="preloader">
+      <div class="loader">
+          <div class="loader__figure"></div>
+          <p class="loader__label"></p>
+      </div>
+  </div>
+    <div class="main-panel">
+        <div class="content-wrapper">
+
+           
+       
+             
+                  <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-8 col-md-12">
+                      <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex m-b-40 align-items-center no-block">
+                                  <h5 class="card-title ">Orders</h5>
+
+
+                                  <div>
+                                    <div class="container">
+                                      <div class="row p-4 gap-2">
+                                      <div class="col shadow rounded-4 bg-body p-3">
+                                      <div class=""  style="width: 100%;">
+                                        <canvas id="myChart"></canvas>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                      </div>
+                  </div> 
+                          </div>
+                      </div>
+                    </div>
+
+                  <div class="col-lg-8 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="m-b-40 align-items-center no-block">
+                                <h5 class="card-title "></h5>
+
+
+                                <div>
+                                  <div class="container">
+                                    <div class="row p-4 gap-2">
+                                    <div class="col shadow rounded-4 bg-body p-3">
+                                    <div class=""  style="width: 100%;">
+                                    <canvas id="customer-chart"></canvas>
+                                    <strong> Customers : {{number_customer}} </strong>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                  </div>
+              </div> 
+           </div>
+      </div>
+          
+          
+                  </div>     
+        
+          <!-- row end -->
+          <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card bg-facebook d-flex align-items-center">
+                <div class="card-body py-5">
+                  <div
+                    class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <div class="ml-3 ml-md-0 ml-xl-3">
+                      <h5 class="text-white font-weight-bold">{{ users }} Subscribers</h5>
+                      <p class="mt-2 text-white card-text">You main list growing</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card bg-google d-flex align-items-center">
+                <div class="card-body py-5">
+                  <div
+                    class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                    <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                    <div class="ml-3 ml-md-0 ml-xl-3">
+                      <h5 class="text-white font-weight-bold">{{totalproducts}} Products</h5>
+                      <p class="mt-2 text-white card-text">You main list growing</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card bg-twitter d-flex align-items-center">
+                <div class="card-body py-5">
+                  <div
+                    class="d-flex flex-row align-items-center flex-wrap justify-content-md-center justify-content-xl-start py-1">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <div class="ml-3 ml-md-0 ml-xl-3">
+                      <h5 class="text-white font-weight-bold">{{totalorders}} Orders</h5>
+                      <p class="mt-2 text-white card-text">You main list growing</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row end -->
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Product table</h4>
+              <p class="card-description">
+               
+              </p>
+              <div class="table-responsive pt-3">
+                <table class="table table-bordered">
+                  <thead class="text-primary">
+                    <tr>
+                      <th>
+                       image
+                      </th>
+                      <th>
+                        Product name
+                      </th>
+                      <th>
+                        Slug
+                      </th>
+                      <th>
+                        Price
+                      </th>
+                     
+                        <th>
+                          stock
+                        </th>
+                        <th>
+                          is_available
+                        </th>
+                        <th>
+                          category
+                        </th>
+                        <th>
+                          SubCategory
+                        </th>
+                      
+      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for x in products %}
+                      <tr>
+                          <td class="py-1">
+                            <img style="width:50px;height:50px;" src="{{x.image.url}}" alt=""/>
+                          </td>
+                          <td>
+                              {{x.product_name}}
+                          </td>
+                         
+                          <td>
+                            {{ x.slug }}
+                          </td>
+                          <td>
+                              {{ x.price }}
+                          </td>
+                          <td>
+                              {{ x.stock }}
+                          </td>
+                          <td>
+                              {{ x.is_available }}
+                          </td>
+                          <td>
+                              {{ x.category }}
+                          </td>
+                          <td>
+                              {{ x.SubCategory }}
+                          </td>
+                        
+                        </tr>
+                        {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript">
+
+            const labels = {{monthNumber|safe}} ;
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Orders by Month',
+                    backgroundColor: 'rgb(0,0,0)',
+                    borderColor: 'rgb(0,0,255)',
+                    
+                    data: {{totalOrders|safe}},
+                }]
+            };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {}
+            };
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+          <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script >
+        var iconfig = {
+        type: 'pie',
+        data: {
+        datasets: [{
+        data: {{ cdata|safe }},
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        ],
+        borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1 ,
+        label: 'Customer'
+        }],
+        labels: {{ clabel|safe }}
+        },
+        options: {
+        responsive: true
+        }
+        };
+
+        window.onload = function() {
+          var ctx = document.getElementById('customer-chart').getContext('2d');
+          window.myPiea = new Chart(ctx, iconfig);
+        
+          };
+
+</script>
+
+    {% endblock %}
+
+

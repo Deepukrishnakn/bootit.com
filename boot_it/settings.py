@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'orders',
+    'master',
+    
 ]
 
 MIDDLEWARE = [
@@ -86,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'boot_it', 
         'USER': 'postgres', 
-        'PASSWORD': 'admin',
+        'PASSWORD': '1234',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }
@@ -141,14 +143,14 @@ MEDIA_ROOT = BASE_DIR /'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TWILIO_VERIFY_SERVICE_SID='VAcc2b522286a5a0940172e536c5a1705f'
+TWILIO_VERIFY_SERVICE_SID='VA031903ba25e6aa4d066fd75d8ae1396d'
 TWILIO_ACCOUNT_SID='ACa573862baf6ffdef688e0bc4d92641b2'
-TWILIO_AUTH_TOKEN='36d59e13fc05d78337f440513dae470d'
+TWILIO_AUTH_TOKEN='2d43a35ba60503c7980d461840ffda5f'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'deepukrishna25@gmail.com'
-EMAIL_HOST_PASSWORD = 'deepu@defender13'
+EMAIL_HOST_PASSWORD = 'qqrabyuoncgfshce'
 EMAIL_USE_TLS = True

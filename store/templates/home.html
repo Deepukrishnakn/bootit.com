@@ -34,7 +34,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<script src="https://kit.fontawesome.com/3a2c36e604.js" crossorigin="anonymous"></script>
 <!--===============================================================================================-->                           
 </head>
 <body class="animsition">
@@ -53,12 +55,12 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Free shipping for standard order 
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						{{user.first_name}}
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -94,12 +96,15 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
+								<a href = 'https://www.jogobonito.tk/'>Find Your Turf</a>
+								<li>
+							<li>
 								<a href="{% url 'home' %}">Home</a>
 								
 
 							
 								<li>
-									<a href="{% url 'category' %}">Category</a>
+									<a href="{% url 'category' %}">Shop</a>
 									<ul class="sub_menu">
 										{% for x in links %}
 										<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
@@ -111,27 +116,30 @@
 						
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="{% url 'about' %}">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="{% url 'contact' %}">Contact</a>
 							</li>
 							<li>
 								<form action="{% url 'search' %}" method="GET">
-								<div class="search-product pos-relative bo4 of-hidden">
-									<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="keyword" placeholder="Search Products...">
-		
-									<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" type="submit">
-										<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-									</button>
-								</div>
-								</form>
+									<div class="search-product pos-relative bo4 of-hidden">
+										<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="keyword" placeholder="Search Products...">
+			
+										<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" type="submit">
+											<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+										</button>
+									</div>
+									</form>
 							</li>
+							{% if user.is_authenticated %}
 							<li>
-							<i class="icon-wishlist icon_heart" aria-hidden="true"> <span class="header-icons-noti">0</span>
+								<a href="{% url 'wishlist' %}" class="header-wrapicon1 dis-block">
+							<i class="icon-wishlist icon_heart" aria-hidden="true"> 
 							</i>
-							
+						</a>
+						{% endif %}
 						</li>
 						</ul>
 					</nav>
@@ -140,7 +148,7 @@
 				<div class="header-icons">						
 						{% if user.is_authenticated %}
 							<li class="nav-item">
-							<a href="#" class="header-wrapicon1 dis-block">
+							<a href="{% url 'userprofile' %}" class="header-wrapicon1 dis-block">
 							<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
 									</li>
 									{% else %}
@@ -204,7 +212,7 @@
 				<ul class="main-menu">
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<span class="topbar-child1">
-							Free shipping for standard order over $100
+							Free shipping for standard order 
 						</span>
 					</li>
 
@@ -251,7 +259,7 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.html">Category</a>
+						<a href="{% url 'category'%}">Shop</a>
 						<ul class="sub-menu">
 							 {% for x in links %}
 							<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
@@ -260,11 +268,11 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="{% url 'about' %}">About</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="{% url 'contact' %}">Contact</a>
 					</li>
 				</ul>
 			</nav>
@@ -278,7 +286,7 @@
 				<div class="item-slick1 item1-slick1">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-							Women Collection 2018
+							Bootit Collection 2022
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
@@ -296,10 +304,10 @@
 
 				<div class="item-slick1 item2-slick1" style=" background-image:
 				radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
-			   url('/static/images/mainimg5.jpg');">
+			   url('/static/images/marcelo.jpg');">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rollIn">
-							Women Collection 2018
+							bootit Collection 2022
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
@@ -308,7 +316,7 @@
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="slideInUp">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+							<a href="{% url 'category' %}" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
 								Shop Now
 							</a>
 						</div>
@@ -317,10 +325,10 @@
 
 				<div class="item-slick1 item3-slick1" style=" background-image:
 				radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
-			   url('/static/images/homwimg3.webp');">
+			   url('/static/images/real.jpg');">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
-							Women Collection 2018
+							Bootit Collection 2022
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
@@ -329,7 +337,7 @@
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="rotateIn">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+							<a href="{% url 'category' %}" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
 								Shop Now
 							</a>
 						</div>
@@ -383,277 +391,45 @@
 			<div class="wrap-slick2">
 				<div class="slick2">
 
+					{% for x in newproduct %}
+
 					<div class="item-slick2 p-l-15 p-r-15">
 						<!-- Block2 -->
 						<div class="block2">
+				
 							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
+								<img src="{{ x.image.url }}" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+									{% if user.is_authenticated %}
+									<a href="{% url 'addwishlist' x.id %}" class="block2-btn-addwishlist hov-pointer trans-0-4">
 										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
 										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 									</a>
+									{% endif %}
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
+										<a href="{{ x.get_url }}"><button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											View
+										</button></a>
 									</div>
 								</div>
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Herschel supply co 25l
+								<a href="{{ x.get_url }}" class="block2-name dis-block s-text3 p-b-5">
+									{{x.product_name}}
 								</a>
 
 								<span class="block2-price m-text6 p-r-5">
-									$75.00
+									₹ {{x.price}}
 								</span>
 							</div>
 						</div>
 					</div>
-
+					{% endfor %}
 					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Denim jacket blue
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$92.50
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Coach slim easton black
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$165.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Frayed denim shorts
-								</a>
-
-								<span class="block2-oldprice m-text7 p-r-5">
-									$29.50
-								</span>
-
-								<span class="block2-newprice m-text8 p-r-5">
-									$15.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Herschel supply co 25l
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$75.00
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Denim jacket blue
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$92.50
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Coach slim easton black
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$165.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="{% static 'images\banner-01.jpg' %}" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Frayed denim shorts
-								</a>
-
-								<span class="block2-oldprice m-text7 p-r-5">
-									$29.50
-								</span>
-
-								<span class="block2-newprice m-text8 p-r-5">
-									$15.90
-								</span>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 
@@ -665,8 +441,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-10 col-md-8 col-lg-6 m-l-r-auto p-t-15 p-b-15">
-					<div class="hov-img-zoom pos-relative">
-						<img src="{% static 'images\bootnike1.webp' %}" alt="IMG-BANNER">
+					<div class="hov-img-zoom pos-relative" >
+						<img  src="{% static 'images\b3.webp' %}" alt="IMG-BANNER">
 
 						<div class="ab-t-l sizefull flex-col-c-m p-l-15 p-r-15">
 							<span class="m-text9 p-t-45 fs-20-sm">
@@ -677,30 +453,31 @@
 								Lookbook
 							</h3>
 
-							<a href="#" class="s-text4 hov2 p-t-20 ">
+							<a href="{% url 'category' %}" class="s-text4 hov2 p-t-20 ">
 								View Collection
 							</a>
 						</div>
 					</div>
 				</div>
 
+				
 				<div class="col-sm-10 col-md-8 col-lg-6 m-l-r-auto p-t-15 p-b-15">
 					<div class="bgwhite hov-img-zoom pos-relative p-b-20per-ssm">
-						<img src="{% static 'images\bootnike4.webp' %}" alt="IMG-BANNER">
+						<img src="{% static 'images\b1.webp' %}" alt="IMG-BANNER">
 
 						<div class="ab-t-l sizefull flex-col-c-b p-l-15 p-r-15 p-b-20">
 							<div class="t-center">
-								<a href="product-detail.html" class="dis-block s-text3 p-b-5">
-									Gafas sol Hawkers one
+								<a href="{% url 'category' %}" class="dis-block s-text3 p-b-5">
+									Shop Now
 								</a>
 
-								<span class="block2-oldprice m-text7 p-r-5">
+								<!-- <span class="block2-oldprice m-text7 p-r-5">
 									$29.50
 								</span>
 
 								<span class="block2-newprice m-text8">
 									$15.90
-								</span>
+								</span> -->
 							</div>
 
 							<div class="flex-c-m p-t-44 p-t-30-xl">
@@ -753,7 +530,7 @@
 
 
 	<!-- Blog -->
-	<section class="blog bgwhite p-t-94 p-b-65">
+	{% comment %} <section class="blog bgwhite p-t-94 p-b-65">
 		<div class="container">
 			<div class="sec-title p-b-52">
 				<h3 class="m-text5 t-center">
@@ -835,164 +612,9 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> {% endcomment %}
 
 	<!-- Instagram -->
-	<section class="instagram p-t-20">
-		<div class="sec-title p-b-52 p-l-15 p-r-15">
-			<h3 class="m-text5 t-center">
-				@ follow us on Instagram
-			</h3>
-		</div>
-
-		<div class="flex-w">
-			<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
-				<img src="{% static 'images\bootnike4.webp' %}" alt="IMG-INSTAGRAM">
-
-				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
-						<span class="p-t-2">39</span>
-					</span>
-
-					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
-						<p class="s-text10 m-b-15 h-size1 of-hidden">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit.
-						</p>
-
-						<span class="s-text9">
-							Photo by @nancyward
-						</span>
-					</div>
-				</a>
-			</div>
-
-			<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
-				<img src="{% static 'images\bootnike1.webp' %}" alt="IMG-INSTAGRAM">
-
-				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
-						<span class="p-t-2">39</span>
-					</span>
-
-					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
-						<p class="s-text10 m-b-15 h-size1 of-hidden">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit.
-						</p>
-
-						<span class="s-text9">
-							Photo by @nancyward
-						</span>
-					</div>
-				</a>
-			</div>
-
-			<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
-				<img src="{% static 'images\bootnike4.webp' %}" alt="IMG-INSTAGRAM">
-
-				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
-						<span class="p-t-2">39</span>
-					</span>
-
-					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
-						<p class="s-text10 m-b-15 h-size1 of-hidden">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit.
-						</p>
-
-						<span class="s-text9">
-							Photo by @nancyward
-						</span>
-					</div>
-				</a>
-			</div>
-
-			<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
-				<img src="{% static 'images\bootnike1.webp' %}" alt="IMG-INSTAGRAM">
-
-				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
-						<span class="p-t-2">39</span>
-					</span>
-
-					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
-						<p class="s-text10 m-b-15 h-size1 of-hidden">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit.
-						</p>
-
-						<span class="s-text9">
-							Photo by @nancyward
-						</span>
-					</div>
-				</a>
-			</div>
-
-			<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
-				<img src="{% static 'images\bootnike4.webp' %}" alt="IMG-INSTAGRAM">
-
-				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
-						<span class="p-t-2">39</span>
-					</span>
-
-					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
-						<p class="s-text10 m-b-15 h-size1 of-hidden">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit.
-						</p>
-
-						<span class="s-text9">
-							Photo by @nancyward
-						</span>
-					</div>
-				</a>
-			</div>
-		</div>
-	</section>
-
-	<!-- Shipping -->
-	<section class="shipping bgwhite p-t-62 p-b-46">
-		<div class="flex-w p-l-15 p-r-15">
-			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
-				<h4 class="m-text12 t-center">
-					Free Delivery Worldwide
-				</h4>
-
-				<a href="#" class="s-text11 t-center">
-					Click here for more info
-				</a>
-			</div>
-
-			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 bo2 respon2">
-				<h4 class="m-text12 t-center">
-					30 Days Return
-				</h4>
-
-				<span class="s-text11 t-center">
-					Simply return it within 30 days for an exchange.
-				</span>
-			</div>
-
-			<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon1">
-				<h4 class="m-text12 t-center">
-					Store Opening
-				</h4>
-
-				<span class="s-text11 t-center">
-					Shop open from Monday to Sunday
-				</span>
-			</div>
-		</div>
-	</section>
-
 
 	<!-- Footer -->
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
@@ -1004,7 +626,7 @@
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Deepukrishna Software Engineer
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -1056,9 +678,9 @@
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						{% comment %} <a href="#" class="s-text7">
 							Search
-						</a>
+						</a> {% endcomment %}
 					</li>
 
 					<li class="p-b-9">
@@ -1068,15 +690,18 @@
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="{% url 'contact' %}" class="s-text7">
 							Contact Us
 						</a>
 					</li>
+					<li>
+						<a href = 'https://www.jogobonito.tk/'>Find Your Turf</a>
+						<li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						{% comment %} <a href="#" class="s-text7">
 							Returns
-						</a>
+						</a> {% endcomment %}
 					</li>
 				</ul>
 			</div>

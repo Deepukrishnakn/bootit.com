@@ -1,0 +1,96 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </nav>
+  <section class="fixed-bottom">
+    <footer class="pt-2 pb-2  bg-dark text-light">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-8">
+            <h6></h6>
+          </div>
+          <div class="col-12 col-md-4 mt-4 mt-md-0 text-center text-md-end">
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+<h2 class=" text-center text-primary m-3">Reviews</h2>
+
+  <table class="table table-striped">
+    <thead class="text-primary">
+      <tr>
+        
+        <th scope="col">Product Name</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Review</th>
+        <th scope="col">Image</th>
+        <th scope="col">User</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for x in reviews %}
+      
+      <tr>
+        
+        <th scope="row">{{x.product.product_name}}</th>
+        <td>{{x.rating}}</td>
+        <td>{{x.subject}}</td>
+        <td>{{x.review}}</td>
+        <td><img style="width:80px;height:80px;" src="{{x.product.image.url}}" alt=""/></td>
+        <td>{{x.user.full_name}}</td>
+       
+        <td><a href="{% url 'review_destroy' x.id %}"onclick="return confirm('Are You Sure, Want To Delete');" ><i  class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
+        
+      </tr>
+      
+      {% endfor %}
+     
+    </tbody>
+  </table>
+
+
+
+  	<!-- Pagination -->
+  
+      <div class="row m-5">
+        <div class="pagination d-flex-m flex-w p-t-50">
+          
+          {% if reviews.has_other_pages %}
+          <div class="product__pagination">
+        <ul class="pagination">
+          {% if reviews.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{reviews.previous_page_number}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only"><<</span>
+            </a>
+          </li>
+          {% endif %}
+          {%  for i in reviews.paginator.page_range %}
+          {% if reviews.number == i %}
+          <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+          {% endif %}
+             {% endfor %}
+             {% if reviews.has_next %}
+            <a class="page-link" href="?page={{reviews.next_page_number}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">>></span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+      </div>
+      </div>
+  
+  {% endblock content %} 

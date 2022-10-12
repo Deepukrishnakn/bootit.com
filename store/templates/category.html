@@ -6,9 +6,9 @@
 
 <section class="bg-title-page p-t-100 p-b-40 flex-col-c-m" style=" background-image:
 radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
-url('/static/images/mainimg5.jpg');">
+url('/static/images/marcelo.jpg');">
 	<h2 class="l-text2 t-center">
-		Boot it
+		Shop
 	</h2>
 	<p class="m-text13 t-center">
 		New Arrivals Soccer Collection 2022
@@ -58,17 +58,20 @@ url('/static/images/mainimg5.jpg');">
 					</h4>
 
 					<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-						<select class="selection-2 form-control" name="sorting">
-							<option>Price</option>
-							<option>$0.00 - $50.00</option>
-							<option>$50.00 - $100.00</option>
-							<option>$100.00 - $150.00</option>
-							<option>$150.00 - $200.00</option>
-							<option>$200.00+</option>
+						<form method="POST">
+							{% csrf_token %}
+						<select class="selection-2 form-control" name="filtering">
+							
+							<option>Default filter</option>
+							{% for f in filtering %}	
+							<option value="{{f.name}}">{{f.pricerange_from}} - {{f.pricerange_to}}</option>
+							{% endfor %}
 
 						</select>
 					</div>
-					<div class="filter-color p-t-22 p-b-50 bo3">
+					<button class="btn btn-dark" type="submit" >filter</button>
+				</form>
+					<!-- <div class="filter-color p-t-22 p-b-50 bo3">
 						<div class="m-text15 p-b-12">
 							Color
 						</div>
@@ -108,10 +111,10 @@ url('/static/images/mainimg5.jpg');">
 								<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
 								<label class="color-filter color-filter7" for="color-filter7"></label>
 							</li>
-						</ul>
-					</div>
+						</ul> 
+					</div> -->
 
-						<form action="{% url 'search' %}" method="GET">
+						 {% comment %} <form action="{% url 'search' %}" method="GET">
 						<div class="search-product pos-relative bo4 of-hidden">
 							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="keyword" placeholder="Search Products...">
 
@@ -119,7 +122,7 @@ url('/static/images/mainimg5.jpg');">
 								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
 							</button>
 						</div>
-						</form>
+						</form> {% endcomment %}
 				</div>
 			</div>
 
@@ -128,14 +131,18 @@ url('/static/images/mainimg5.jpg');">
 				<div class="flex-sb-m flex-w p-b-35">
 					<div class="flex-w">
 						<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-							<select class="selection-2 form-control" name="sorting">
-								<option>Default Sorting</option>
-								<option>Popularity</option>
-								<option>Price: low to high</option>
-								<option>Price: high to low</option>
-							</select>
-						</div>
-
+							<form method="POST">
+								{% csrf_token %}
+								<select class="selection-2 form-control" name="sorting">
+									<option>Default Sorting</option>
+									
+									<option value="low">Price: low to high</option>
+									<option value="high">Price: high to low</option>
+								</select>
+								</div>
+								<button class="btn btn-dark" type="submit" >filter</button>
+							</form>
+<!-- 
 						<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 							<select class="selection-2 form-control" name="sorting">
 								<option>Price</option>
@@ -146,7 +153,7 @@ url('/static/images/mainimg5.jpg');">
 								<option>$200.00+</option>
 
 							</select>
-						</div>
+						</div> -->
 					</div>
 
 					<span class="s-text8 p-t-5 p-b-5">
@@ -165,11 +172,12 @@ url('/static/images/mainimg5.jpg');">
 								<a href="{{ x.get_url }}"><img src="{{ x.image.url }}"alt="IMG-PRODUCT">
                                 </a>
 								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+									{% if user.is_authenticated %}
+									<a href="{% url 'addwishlist' x.id %}" class="block2-btn-addwishlist hov-pointer trans-0-4">
 										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
 										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 									</a>
-
+									{% endif %}
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
 										<a href="{{ x.get_url }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4 text-white">
@@ -200,7 +208,7 @@ url('/static/images/mainimg5.jpg');">
 						{% if products.has_other_pages %}
 						<div class="product__pagination">
 							{% if products.has_previous %}
-							<a class="item-pagination d-flex-c-m p-3 trans-0-4"href="?page={{products.previous_page_number}}"><</a>
+							<a class="item-pagination d-flex-c-m p-3 trans-0-4"href="?page={{products.previous_page_number}}"><<</a>
 							{% endif %}
 
 							{%  for i in products.paginator.page_range %}
@@ -212,7 +220,7 @@ url('/static/images/mainimg5.jpg');">
 							{% endif %}
 						   {% endfor %}
 							{% if products.has_next %}
-							<a class="item-pagination d-flex-c-m p-3 trans-0-4" href="?page={{products.next_page_number}}">></a>
+							<a class="item-pagination d-flex-c-m p-3 trans-0-4" href="?page={{products.next_page_number}}">>></a>
 							{% endif %}
 						</div>
 						{% endif %}

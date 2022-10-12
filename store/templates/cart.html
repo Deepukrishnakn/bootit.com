@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'nave.html' %}
 {% load static %}
 {% block content%}
 
 <section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style=" background-image:
 radial-gradient(rgba(0, 0, 0, 0.607), rgba(245, 246, 252, 0.105) ),
-url('/static/images/mainimg5.jpg');">
+url('/static/images/marcelo.jpg');">
 	<h5 class="l-text2 t-center">
 		Shopping Cart
 	</h5>
@@ -14,6 +14,7 @@ url('/static/images/mainimg5.jpg');">
   <script src="https://kit.fontawesome.com/89e78a04d2.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
   <style>
     @media (min-width: 1025px) {
       .h-custom {
@@ -72,6 +73,19 @@ url('/static/images/mainimg5.jpg');">
                       <h6 class="mb-0 text-muted">{{cart_count}} items</h6>
                     </div>
                     <hr class="my-4">
+
+                    <div class="container">
+                      {% if messages %}
+                        {% for message in messages %}
+                              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"></svg>
+                            <div>
+                              {{message}}
+                            </div>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                     </div>
 
                     {% if not cart_items %}
                     <h5 class="text-danger text= center">Your Shopping Cart is Empty </h5>

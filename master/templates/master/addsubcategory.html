@@ -1,0 +1,42 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+
+
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="text-center tex-primary m-3"> Add SubCategory </h3>
+      
+      <form class="forms-sample" action="" enctype='multipart/form-data' method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{{ form.category }}</label>
+          <label class="form-label" for="form3Example1c">category</label>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">{{ form.name }}</label>
+          <label class="form-label" for="form3Example1c">name</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.slug }}</label>
+          <label class="form-label" for="form3Example1c">slug</label>
+        </div>
+
+        
+    
+        <button type="submit" class="btn btn-primary mr-2" type="submit">Submit</button>
+       
+      </form>
+      <a href="{% url 'subcategoryz' %}"><button class="btn btn-light mr-2 mt-2">Cancel</button></a>
+    </div>
+   
+  </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,148 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h2 class=" text-center text-primary m-3">users</h2>
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Users table</h4>
+        <p class="card-description">
+         
+        </p>
+        <div class="table-responsive pt-3">
+          <table class="table table-bordered">
+            <thead class="text-primary">
+              <tr>
+                <th>
+                    First name
+                </th>
+                <th>
+                    Last name
+                </th>
+                <th>
+                    username
+                </th>
+                <th>
+                    email
+                </th>
+               
+                  <th>
+                    phone number
+                  </th>
+                  <th>
+                    date joined
+                  </th>
+                  <th>
+                    last login
+                  </th>
+                  <th>
+                    is admin
+                  </th>
+                  <th>
+                    is staff
+                  </th>
+                  <th>
+                    is active
+                  </th>
+                  {% comment %} <th>
+                    is_superadmin
+                  </th> {% endcomment %}
+                  <th scope="col">Action</th>
+        {% comment %} <th scope="col">Delete</th>
+                   {% endcomment %}
+
+              </tr>
+            </thead>
+            <tbody>
+                {% for x in users %}
+                {% comment %} <tr>
+                    <td class="py-1">
+                      <img src="{{ x.image.url }}" alt=""/>
+                    </td> {% endcomment %}
+                    <td>
+                        {{x.first_name}}
+                    </td>
+                   
+                    <td>
+                      {{ x.last_name }}
+                    </td>
+                   
+                    <td>
+                        {{ x.username }}
+                    </td>
+                    <td>
+                      {{ x.email }}
+                    </td>
+                    <td>
+                        {{ x.phone_number }}
+                    </td>
+                    <td>
+                        {{ x.date_joined }}
+                    </td>
+                    <td>
+                        {{ x.last_login }}
+                    </td>
+                    <td>
+                        {{ x.is_admin }}
+                    </td>
+                    <td>
+                        {{ x.is_staff }}
+                    </td>
+                    <td>
+                        {{ x.is_active }}
+                    </td>
+                  
+                    <td>
+                    {% if x.is_active %}
+                    <a href="{% url 'blockuser' x.id %}"><button type="button" class="btn btn-success m-1">Block</button></a>
+                    {% else %}
+                    <a href="{% url 'blockuser' x.id %}"><button type="button" class="btn btn-danger m-1">Unblock</button></a>
+                    </td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row m-5">
+    <div class="pagination d-flex-m flex-w p-t-50">
+      
+      {% if users.has_other_pages %}
+      <div class="product__pagination">
+    <ul class="pagination">
+      {% if users.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{users.previous_page_number}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only"><<</span>
+        </a>
+      </li>
+      {% endif %}
+      {%  for i in users.paginator.page_range %}
+      {% if users.number == i %}
+      <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+      {% endif %}
+         {% endfor %}
+         {% if users.has_next %}
+        <a class="page-link" href="?page={{users.next_page_number}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">>></span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+  </div>
+  </div>
+
+{% endblock content %} 

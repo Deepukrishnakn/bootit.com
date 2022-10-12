@@ -1,0 +1,126 @@
+{% extends 'master/mbase.html' %}
+{% load static %}
+{% block content %} 
+
+
+
+
+<div class="col-12 grid-margin stretch-card" style="min-height: 200px;">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="text-center tex-primary m-3"> Add product</h3>
+      
+      <form class="forms-sample" id="productform" action="" enctype='multipart/form-data' method="POST" data-Subcategory-url="{% url 'ajax_load_subcategory' %}" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputName1">{{ form.product_name }}</label>
+          <label class="form-label" for="form3Example1c">product name</label>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">{{ form.slug }}</label>
+          <label class="form-label" for="form3Example1c">Slug</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.description }}</label>
+          <label class="form-label" for="form3Example1c">Description</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.price }}</label>
+          <label class="form-label" for="form3Example1c">Price</label>
+        </div>
+     
+        <div class="form-group">
+          <label>{{ form.image }}</label>
+          <input type="file" name="img[]" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <label class="form-label" for="form3Example1c">image</label>
+            <span class="input-group-append">
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{ form.image1 }}</label>
+          <input type="file" name="img[]" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <label class="form-label" for="form3Example1c">image1</label>
+            <span class="input-group-append">
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{ form.image2 }}</label>
+          <input type="file" name="img[]" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <label class="form-label" for="form3Example1c">image2</label>
+            <span class="input-group-append">
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{ form.image3 }}</label>
+          <input type="file" name="img[]" class="file-upload-default">
+          <div class="input-group col-xs-12">
+            <label class="form-label" for="form3Example1c">image3</label>
+            <span class="input-group-append">
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.stock }}</label>
+          <label class="form-label" for="form3Example1c">Stock</label>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.is_available }}</label>
+          <label class="form-label" for="form3Example1c">Is Available</label>
+        </div>
+
+        
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.category }}</label>
+          <label class="form-label" for="form3Example1c">Category</label>
+        </div>
+
+        
+        <div class="form-group">
+          <label for="exampleInputPassword4">{{ form.SubCategory }}</label>
+          <label class="form-label" for="form3Example1c">Subcategory</label>
+        </div>
+    
+        <button type="submit" class="btn btn-primary mr-2" type="submit">Submit</button>
+        <a href="{% url 'productz' %}"><button class="btn btn-light mr-2 mt-2">Cancel</button></a>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_category").change(function () {
+      var url = $("#productform").attr("data-SubCategory-url");  // get the url of the `load_cities` view
+      var categoryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'category': categoryId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_SubCategory").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
+
+
+{% endblock content %}

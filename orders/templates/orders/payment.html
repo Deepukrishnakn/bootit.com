@@ -15,6 +15,9 @@ url('/static/images/mainimg5.jpg');">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
+
+    
+ 
     @media (min-width: 1025px) {
       .h-custom {
         height: 100vh !important;
@@ -57,7 +60,7 @@ url('/static/images/mainimg5.jpg');">
 </head>
 
 <body>
-
+  
   <section class="h-100% " style="background-color: #d2c9ff;">
     <div class="container-fluid py-5 pb-5 h-100%">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -84,19 +87,20 @@ url('/static/images/mainimg5.jpg');">
                       </div>
                     </div><br>
 
-                    <div class="card">
+                    {% comment %} <div class="card">
                       <div class="card-header">
                        Payment Method
                       </div>
                       <div class="card-body">
-                      <p class="muted-text">With supporting text below as a natural lead-in to additional content.</p>
+                      <p class="muted-text">{{payment.payment}}</p>
                       </div>
-                    </div><br>
+                    </div><br> {% endcomment %}
 
-                    <div class="card">
+                     <div class="card">
                       <div class="card-header">
                         Products Review 
                       </div>
+                      {% for cart_item in cart_items %}
                       <div class="card-body">
                         <h6 class="text-muted">{{cart_item.product.product_name }}</h6>
                         <div class="item-slick3" data-thumb="{{ single_product.image.url }}">
@@ -105,20 +109,23 @@ url('/static/images/mainimg5.jpg');">
                           </div>
                         </div>
                         <h6 class="text-muted">{{cart_item.product.SubCategory }}</h6>
+                        <h6 class="text-muted"> Quantity:{{cart_item.quantity }}</h6>
                         <h6 class="text-muted">{{cart_item.product.category }}</h6>
                         <h6 class="text-muted">{{cart_item.product.description }}</h6>
                         <h6 class="text-muted">₹ {{cart_item.product.price }}</h6>
-                      </div>
-                    </div>
-
+                        </div>
+                        {% endfor %}
+                         </div> 
                   
-                    {% for cart_item in cart_items %}
+                        
+
+                    <!-- {% for cart_item in cart_items %}
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-						<div class="item-slick3" data-thumb="{{ single_product.image.url }}">
-							<div class="cart-img-product b-rad-4 o-f-hidden">
-								<img src="{{ cart_item.product.image.url }}" alt="IMG-PRODUCT">
-							</div>
-						</div>
+						       <div class="item-slick3" data-thumb="{{ single_product.image.url }}">
+							    <div class="cart-img-product b-rad-4 o-f-hidden">
+								  <img src="{{ cart_item.product.image.url }}" alt="IMG-PRODUCT">
+							    </div>
+						       </div>
                 
                       <div class="col-md-3 col-lg-4 col-xl-6 offset-lg-1">
                         <h6 class="mb-0">₹ {{ cart_item.sub_total }}</h6>
@@ -129,7 +136,7 @@ url('/static/images/mainimg5.jpg');">
                     <hr class="my-4">
 
 
-                    {% endfor %}
+                    {% endfor %} -->
 
                     
                     <div class="pt-5">
@@ -150,16 +157,21 @@ url('/static/images/mainimg5.jpg');">
                       <h5 class="text-uppercase">Tax</h5>
                       <h5>₹ {{tax}}</h5>
                     </div>
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Discount</h5>
+                      <h5>₹ {{dis}}</h5>
+                    </div>
                     <div>
                       <div class="d-flex justify-content-between mb-5">
                         <h5 class="text-uppercase">Grand Total </h5>
                         <h5>₹{{grand_total}}</h5>
                       </div>
                     </div>
-              <a href="{% url 'checkout' %}"> <button type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark">Proceed to Pay</button></a>
-
-
+              <a href="{% url 'razor_payments' %}"> <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Pay with Razorpay</button></a><br><br>
+             <span> <a href="{% url 'cashon' %}"> <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Cash on Delivery</button></a></span>
+                     
 
 </div>
 

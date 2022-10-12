@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Cart, CartItem, Category, Product, SubCategory, Variation
+from .models import Cart, CartItem, Category, Product, SubCategory, Variation,Discount,Wishlist,Discount_coupon,ReviewRating,filter_price
 # Register your models here.
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -26,6 +26,9 @@ class CartAdmin(admin.ModelAdmin):
     
 class CartItemAdmin(admin.ModelAdmin):
     list_display = ('product', 'cart', 'quantity', 'is_active')
+    
+class DiscountAdmin(admin.ModelAdmin):
+    list_display = ('discount_code', 'discount_percentage', 'discount_from','created_at','updated_at', 'is_active')
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
@@ -33,3 +36,8 @@ admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(Variation, VariationAdmin)
+admin.site.register(Discount, DiscountAdmin)
+admin.site.register(Wishlist)
+admin.site.register(Discount_coupon)
+admin.site.register(ReviewRating)
+admin.site.register(filter_price)
