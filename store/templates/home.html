@@ -100,8 +100,6 @@
 								<li>
 							<li>
 								<a href="{% url 'home' %}">Home</a>
-								
-
 							
 								<li>
 									<a href="{% url 'category' %}">Shop</a>
@@ -253,6 +251,10 @@
 							<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
 						</div>
 					</li>
+					
+					<li class="item-menu-mobile">
+						<a href = 'https://www.jogobonito.tk/'>Find Your Turf</a>
+						<li>
 
 					<li class="item-menu-mobile">
 						<a href="{% url 'home' %}">Home</a>
@@ -261,9 +263,9 @@
 					<li class="item-menu-mobile">
 						<a href="{% url 'category'%}">Shop</a>
 						<ul class="sub-menu">
-							 {% for x in links %}
+							{% for x in links %}
 							<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
-							{% endfor %} 
+						{% endfor %}
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
@@ -684,7 +686,7 @@
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="{% url 'about' %}" class="s-text7">
 							About Us
 						</a>
 					</li>
