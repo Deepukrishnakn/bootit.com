@@ -1,0 +1,327 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/themify/themify-icons.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/elegant-font/html-css/style.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/lightbox2/css/lightbox.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->                           
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header1">
+		<!-- Header desktop -->
+		<div class="container-menu-header">
+			<div class="topbar">
+				<div class="topbar-social">
+					<a href="#" class="topbar-social-item fa fa-facebook"></a>
+					<a href="#" class="topbar-social-item fa fa-instagram"></a>
+					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+				</div>
+
+				<span class="topbar-child1">
+					Free shipping for standard order over $100
+				</span>
+
+				<div class="topbar-child2">
+					<span class="topbar-email">
+						fashe@example.com
+					</span>
+
+					<div class="topbar-language rs1-select2">
+						<ul class="main_menu">
+							<li>
+								<a href="{% url 'home' %}">My Account</a>
+								<ul class="sub_menu">
+									{% if user.is_authenticated %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+									</li>
+									{% else %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+									</li>
+									<li><a href="{% url 'register' %}">Signup</a></li>
+									{% endif %}
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap_header">
+				<!-- Logo -->
+				<a href="{% url 'home' %}" class="logo">
+					<img src="{% static 'images/bootitlogo.png'%}" alt="IMG-LOGO">
+				</a>
+
+				<!-- Menu -->
+				<div class="wrap_menu">
+					<nav class="menu">
+						<ul class="main_menu">
+							<li>
+								<a href="{% url 'home' %}">Home</a>
+								
+
+							
+								<li>
+									<a href="{% url 'category' %}">Category</a>
+									<ul class="sub_menu">
+										{% for x in links %}
+										<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
+									{% endfor %}
+									</ul>
+								</li>
+						
+
+						
+
+							<li>
+								<a href="about.html">About</a>
+							</li>
+
+							<li>
+								<a href="contact.html">Contact</a>
+							</li>
+							<li>
+								<form action="{% url 'search' %}" method="GET">
+								<div class="search-product pos-relative bo4 of-hidden">
+									<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="keyword" placeholder="Search Products...">
+		
+									<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" type="submit">
+										<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+									</button>
+								</div>
+								</form>
+							</li>
+							<li>
+							<i class="icon-wishlist icon_heart" aria-hidden="true"> <span class="header-icons-noti">0</span>
+							</i>
+							
+						</li>
+						</ul>
+					</nav>
+				</div>
+				<!-- Header Icon -->
+				<div class="header-icons">
+					<a href="#" class="header-wrapicon1 dis-block">
+						{% if user.is_authenticated %}
+						<li class="nav-item">
+						<a href="#" class="header-wrapicon1 dis-block">
+						<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
+								</li>
+								{% else %}
+								<li class="nav-item">
+								  <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+								</li>
+								<li><a href="{% url 'register' %}">Signup</a></li> 
+								{% endif %}
+					</a>
+
+					<span class="linedivide1"></span>
+
+					<div class="header-wrapicon2">
+						<a href="{% url 'cart' %}"><img src="{% static 'images/icons/icon-header-02.png' %}" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+						<span class="header-icons-noti">{{ cart_count }}</span>
+
+						<!-- Header cart noti -->
+				
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap_header_mobile">
+			<!-- Logo moblie -->
+			<a href="{% url 'home' %}" class="logo">
+				<img src="{% static 'images/bootitlogo.png'%}" alt="IMG-LOGO">
+			</a>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu">
+				<!-- Header Icon mobile -->
+				<div class="header-icons-mobile">
+					<a href="#" class="header-wrapicon1 dis-block">
+						<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
+					</a>
+
+					<span class="linedivide2"></span>
+
+					<div class="header-wrapicon2">
+						<a href="{% url 'cart' %}"><img src="{% static 'images/icons/icon-header-02.png' %}" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+						<span class="header-icons-noti">{{cart_count}}</span>
+
+						<!-- Header cart noti -->
+					</div>
+				</div>
+
+				<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu Mobile -->
+		<div class="wrap-side-menu" >
+			<nav class="side-menu">
+				<ul class="main-menu">
+					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+						<span class="topbar-child1">
+							Free shipping for standard order over $100
+						</span>
+					</li>
+
+					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+						<div class="topbar-child2-mobile">
+							<span class="topbar-email">
+								soccer@example.com
+							</span>
+
+							<div class="topbar-language rs1-select2">
+								<ul class="main_menu">
+									<li>
+										<a href="{% url 'home' %}">My Account</a>
+										<ul class="sub_menu">
+											{% if user.is_authenticated %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+									</li>
+									{% else %}
+									<li class="nav-item">
+									  <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+									</li>
+									<li><a href="{% url 'register' %}">Signup</a></li>
+									{% endif %}
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+
+					<li class="item-topbar-mobile p-l-10">
+						<div class="topbar-social-mobile">
+							<a href="#" class="topbar-social-item fa fa-facebook"></a>
+							<a href="#" class="topbar-social-item fa fa-instagram"></a>
+							<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
+							<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
+							<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+						</div>
+					</li>
+
+					<li class="item-menu-mobile">
+						<a href="{% url 'home' %}">Home</a>
+					</li>
+
+					<li class="item-menu-mobile">
+						<a href="index.html">Category</a>
+						<ul class="sub-menu">
+							{% for x in links %}
+							<li><a href="{{ x.get_url }}"> {{ x.category_name }}</a></li>
+							{% endfor %}
+						</ul>
+						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
+					</li>
+			
+
+					<li class="item-menu-mobile">
+						<a href="about.html">About</a>
+					</li>
+
+					<li class="item-menu-mobile">
+						<a href="contact.html">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+ 
+
+{% block content %}
+
+
+{% endblock %}
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/select2/select2.min.js' %}"></script>
+	<script type="text/javascript">
+		$(".selection-1").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/slick/slick.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/lightbox2/js/lightbox.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'vendor/sweetalert/sweetalert.min.js' %}"></script>
+	<script type="text/javascript">
+		$('.block2-btn-addcart').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+
+		$('.block2-btn-addwishlist').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
+		});
+	</script>
+
+<!--===============================================================================================-->
+<script type="text/javascript" src="{% static 'vendor/noui/nouislider.min.js '%}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
