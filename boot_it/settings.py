@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'store',
     'orders',
     'master',
-    
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -86,9 +86,9 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject', 
-        'USER': 'myprojectuser', 
-        'PASSWORD': 'password',
+        'NAME': 'boot_it', 
+        'USER': 'postgres', 
+        'PASSWORD': '1234',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }
@@ -129,11 +129,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'static'),
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR /'media/'
@@ -148,12 +148,12 @@ TWILIO_ACCOUNT_SID=config('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN=config('TWILIO_AUTH_TOKEN')
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'deepukrishna25@gmail.com'
-EMAIL_HOST_PASSWORD = 'qqrabyuoncgfshce'
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
@@ -161,3 +161,21 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+  'CacheControl':'max-age=86400',
+}
+AWS_S3_FILE_OVERWRITE = True
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_DIRS=[
+  'static',
+
+]
+STATIC_URL = 'http://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
