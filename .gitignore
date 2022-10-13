@@ -72,6 +72,7 @@ cover/
 
 # Translations
 *.mo
+.env
 
 # Django stuff:
 
