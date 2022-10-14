@@ -26,7 +26,7 @@ source myenv/bin/activate
 
 Then install the dependencies:
 ```python
-(myenv)$ pip install -r requirement.txt
+(myenv)$ pip install -r requirements.txt
 ```
 Note the ```(myenv)``` in front of the prompt. This indicates that this terminal session operates in a virtual environment set up by virtualenv2.
 
