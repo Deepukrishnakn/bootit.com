@@ -5,9 +5,9 @@ In admin side, admins can manage users,products,categories,discount coupons,orde
 
 ## Live Demonstration
 
-The E-commerce demo can be viewed online here: https://savebox.ae
+The E-commerce demo can be viewed online here: https://bootit.tk
 
-Here is the screencast that show the E-commerce demo application in use: https://youtu.be/PEueuoEQ5S8
+Here is the screencast that show the E-commerce demo application in use: https://bootit.tk
 
 
 ## Getting started
